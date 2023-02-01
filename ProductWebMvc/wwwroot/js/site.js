@@ -5,11 +5,11 @@
 $(document).ready(function () {
     $("#q").keyup(function () {
         $("#test").empty();
-        let q = $(this).val()
+        let q = $(this).val().toLowerCase()
         
 
         $.get("https://localhost:7049/api/products", function (data, status) {
-            data.filter(x => x.title.includes(q)).forEach(x => {
+            data.filter(x => x.title.toLowerCase().includes(q) || x.categoryName.toLowerCase().includes(q) || x.description.toLowerCase().includes(q)).forEach(x => {
                 let card = '<div class="col"><div class="card h-100"><img src="https://picsum.photos/800/450?random" class="card-img-top" alt="...">                        <div class="card-body"><h5 class="card-title">' + x.title + '</h5><p class="card-text">' + x.categoryName + '</p>                            <p class="card-text">' + x.price + ' TL</p><p class="card-text">' + x.description + '</p></div></div></div>'
                 $("#test").append(card)
 
