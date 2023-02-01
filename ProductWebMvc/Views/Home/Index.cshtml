@@ -1,0 +1,44 @@
+﻿@model HomeIndexViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                Categories
+            </div>
+
+            <ul class="list-group list-group-flush">
+                @foreach (var item in Model.Categories)
+                {
+                    <li class="list-group-item">
+                        <a asp-action="products" asp-controller="home" asp-route-cname="@item.title.ToUrl()" asp-route-cid="@item.id">@item.title</a>
+                        </li>
+                }
+
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div id="test" class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var item in Model.Products)
+            {
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="https://picsum.photos/800/450?random" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.title</h5>
+                            <p class="card-text">@item.categoryName</p>
+                            <p class="card-text">@item.price TL</p>
+                            <p class="card-text">@item.description</p>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+    </div>
+</div>
